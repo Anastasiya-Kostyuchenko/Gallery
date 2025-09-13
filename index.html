@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Memoria</h1>
+    <div id="gallery"></div>
+    <script type="module">
+      import { createGallery } from "./index.js";
+      const images = [
+        "https://avatars.mds.yandex.net/i?id=7b17c3fdaf60d9f551607764a9a030439d967941bf39164b-12439486-images-thumbs&n=13",
+        "https://avatars.mds.yandex.net/i?id=289ff1487372880d3d3874dac7c5dbd29851cdd2-10337238-images-thumbs&n=13",
+        "https://avatars.mds.yandex.net/i?id=a5f25d36970523f1686c3f76e615ef4f71f5f3b7-11842117-images-thumbs&n=13",
+        "https://avatars.mds.yandex.net/i?id=794669b01123dbf41c6d22cde6ba7d4cf4902e9b-6202880-images-thumbs&n=13",
+        "https://avatars.mds.yandex.net/i?id=8676c3b449226138348066a5d4d25539dcdf6b79-9107081-images-thumbs&n=13",
+        "https://avatars.mds.yandex.net/i?id=fec3e01ed47c82c0e9203e3f3c1d5bb317ab67c2-10686310-images-thumbs&n=13",
+      ];
+      createGallery({
+        images: images,
+        el: "#gallery",
+        interval: 3000,
+        // onChange: (index) => console.log(index),
+        arrows: true,
+        dots: true,
+        infinite: false,
+        nextImgByClick: true,
+      });
+    </script>
+  </body>
+</html>
