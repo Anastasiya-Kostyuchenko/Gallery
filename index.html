@@ -22,11 +22,11 @@
       createGallery({
         images: images,
         el: "#gallery",
-        interval: 3000,
-        // onChange: (index) => console.log(index),
+        interval: 1000,
+        onChange: (index) => console.log(index),
         arrows: true,
         dots: true,
-        infinite: false,
+        infinite: true,
         nextImgByClick: true,
       });
     </script>

@@ -42,20 +42,24 @@ class Gallery {
   }
 
   set count(value) {
-    console.log(this._count);
-    this.dotsUl.children[this._count].classList.remove("active");
+    this.dotsUl.children[this._count]?.classList.remove("active");
     if (this.infinite) {
-      this._count = value % this.images.length;
-    } else {
-      if (this.count === this.images.length - 1) clearInterval(this.intervalId);
+      this._count =
+        value < 0 ? this.images.length - 1 : value % this.images.length;
+      this.restartInterval();
+    } else if (this.interval) {
+      value === this.images.length - 1
+        ? clearInterval(this.intervalId)
+        : this.restartInterval();
       this._count = value;
     }
+    if (!this.infinite) {
+      this.btnMinus.disabled = this.count === 0;
+      this.btnPlus.disabled = this.count === this.images.length - 1;
+    }
     this.onChange?.(this._count);
-    this.restartInterval();
-    this.btnMinus.disabled = this.count === 0;
-    this.btnPlus.disabled = this.count === this.images.length - 1;
     this.img.src = this.images[this.count];
-    this.dotsUl.children[this._count].classList.add("active");
+    this.dotsUl.children[this._count]?.classList.add("active");
   }
 
   render() {
@@ -79,12 +83,10 @@ class Gallery {
     });
   }
 
-  setup(dots, arrows, nextImgByClick, interval) {
+  setup(dots, arrows, nextImgByClick) {
     dots && this.renderDots();
 
     if (arrows) {
-      if (this.count === 0) this.btnMinus.disabled = true;
-      if (this.count === this.images.length - 1) this.btnPlus.disabled = true;
       this.btnMinus.hidden = false;
       this.btnPlus.hidden = false;
       this.btnMinus.onclick = () => this.count--;
@@ -97,9 +99,7 @@ class Gallery {
         this.count++;
       });
 
-    this.restartInterval();
-
-    this.img.src = this.images[this.count];
+    this.count = 0;
   }
 
   restartInterval() {
