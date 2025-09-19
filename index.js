@@ -18,18 +18,18 @@ class Gallery {
     this.infinite = infinite;
     this.gallery.innerHTML = `
     <div class="btn">
-      <button class="btnMinus" hidden></button>
+      <button class="btnPrev" hidden></button>
     </div>
     <div class="photobox">
       <img class="img" src="" alt="photo">
     </div>
     <div class="btn" >
-      <button class="btnPlus" hidden></button>
+      <button class="btnNext" hidden></button>
     </div>
     <div class="dotsUl"></div>
 `;
-    this.btnMinus = this.gallery.querySelector(".btnMinus");
-    this.btnPlus = this.gallery.querySelector(".btnPlus");
+    this.btnPrev = this.gallery.querySelector(".btnPrev");
+    this.btnNext = this.gallery.querySelector(".btnNext");
     this.img = this.gallery.querySelector(".img");
     this.photoBox = this.gallery.querySelector(".photobox");
     this.dotsUl = this.gallery.querySelector(".dotsUl");
@@ -54,8 +54,8 @@ class Gallery {
       this._count = value;
     }
     if (!this.infinite) {
-      this.btnMinus.disabled = this.count === 0;
-      this.btnPlus.disabled = this.count === this.images.length - 1;
+      this.btnPrev.disabled = this.count === 0;
+      this.btnNext.disabled = this.count === this.images.length - 1;
     }
     this.onChange?.(this._count);
     this.img.src = this.images[this.count];
@@ -63,14 +63,21 @@ class Gallery {
   }
 
   render() {
-    const { photoBox, btnMinus, btnPlus, gallery, img, dotsUl } = this;
+    const {
+      photoBox,
+      btnPrev: btnPrev,
+      btnNext: btnNext,
+      gallery,
+      img,
+      dotsUl,
+    } = this;
     photoBox.className = "photoBox";
-    btnMinus.className = "prev";
-    btnPlus.className = "next";
+    btnPrev.className = "prev";
+    this.btnNext.className = "next";
     gallery.append(photoBox);
-    photoBox.append(btnMinus);
+    photoBox.append(btnPrev);
     photoBox.append(img);
-    photoBox.append(btnPlus);
+    photoBox.append(this.btnNext);
     gallery.append(dotsUl);
   }
 
@@ -87,10 +94,10 @@ class Gallery {
     dots && this.renderDots();
 
     if (arrows) {
-      this.btnMinus.hidden = false;
-      this.btnPlus.hidden = false;
-      this.btnMinus.onclick = () => this.count--;
-      this.btnPlus.onclick = () => this.count++;
+      this.btnPrev.hidden = false;
+      this.btnNext.hidden = false;
+      this.btnPrev.onclick = () => this.count--;
+      this.btnNext.onclick = () => this.count++;
     }
 
     nextImgByClick &&
