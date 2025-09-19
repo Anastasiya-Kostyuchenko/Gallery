@@ -4,6 +4,8 @@
 It allows developers to easily embed an image slider into any webpage using only an array of image URLs.
 Features include autoplay with adjustable intervals, navigation arrows and dots, infinite or finite scrolling, and a customizable onChange event for handling slide changes.
 
+https://anastasiya-kostyuchenko.github.io/Gallery/
+
 ## Tech Stack
 
 - HTML
