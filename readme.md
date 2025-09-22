@@ -69,5 +69,5 @@ https://anastasiya-kostyuchenko.github.io/Gallery/
 | `arrows`    | boolean  | `true`   | Show navigation arrows                              |
 | `dots`      | boolean  | `true`   | Show navigation dots                                |
 | `infinite`  | boolean  | `true`   | Enable infinite loop                                |
-| `clickNext` | boolean  | `false`  | Click on image goes to next slide                   |
+| `clickNext` | boolean  | `true`  | Click on image goes to next slide                   |
 | `onChange`  | function | `null`   | Callback triggered on slide change (receives index) |
